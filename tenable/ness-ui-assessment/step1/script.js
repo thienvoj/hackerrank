@@ -1,11 +1,15 @@
-document.getElementById("fetchButton").addEventListener("click", function() {
-    fetch("https://www.mocky.io/v2/5ae8b2652d000042117b49a2?host=2")
-    .then(function(response) {
-        response.text().then(function(responseText) {
-            document.getElementById("result").innerHTML = responseText;
-        });
+// will set timeout for api in step 4, when using React and axios instead of fetch
+document.getElementById("fetch").addEventListener("click", function() {
+    let url = "http://api.test.com/download/request?host=2";
+
+    fetch(url)
+    .then(response => {
+        return response.text();
     })
-    .catch(function(error) {
-        document.getElementById("result").innerHTML = responseText;
+    .then(data => {
+        document.getElementById("display-result").innerHTML = data;
+    })
+    .catch(error => {
+        // log error and prompt user with an error message
     });
 });
