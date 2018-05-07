@@ -1,0 +1,20 @@
+Sendingr request of host=10000 and the response contains 10000 fields might get into memory issue
+on client browser and it will take a long time to get response back, and can harm microservice stability.
+
+1) solution 1: pagination
+The benefit of this approach is to control of returned payload size and can eliminate possible memory
+issues for the client and can eliminate memory problems in microservice too,
+with proper validation of pagination parameters.
+If client does not use most of the 10000 fields from response, then work with backend team.
+Ideally, backend support GraphQL and client can query the exact data needed from frontend.
+
+2) Solution 2: chunking
+The data is sent in response as a series of “chunks”.
+Basically, elements can be sent one by one, without storing the whole response in memory and
+without closing connection until every chunk is passed. This way we can send unlimited size of data
+in just one request.
+
+3) Amazon Kinesis Data Streams
+https://aws.amazon.com/kinesis/data-streams/
+With the Kinesis Client Library (KCL), we can build Kinesis Applications and use streaming data
+to power real-time dashboards, generate alerts, implement dynamic pricing and advertising, and more.
